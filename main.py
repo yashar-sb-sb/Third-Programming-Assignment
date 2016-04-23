@@ -16,7 +16,7 @@ def apriori(data,min_support):
                         yield frozenset(new_set)
 
     #generate frequent itemsets of size one.
-    sets = [set().union(*map(lambda x: [frozenset(i)for i in x if sum(i in j for j in data) >= min_support],data))]
+    sets = [set().union(*map(lambda x: [frozenset([i])for i in x if sum(i in j for j in data) >= min_support],data))]
 
     #generate frequent itemsets with sizes greater than 1
     while True:
