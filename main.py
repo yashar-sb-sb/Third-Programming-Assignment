@@ -26,3 +26,16 @@ def apriori(data,min_support):
 
     #returns the resulting itemsets with frequency of at least min_support
     return sets
+
+def main():
+    import sys,re
+    regx = re.compile(r"[\n\t ]")
+    input_file = open(sys.argv[1], 'r')
+    lines = iter(input_file.readlines())
+    next(lines)
+    for i in apriori([{*i.split(';')}for i in list(zip(*[re.sub(regx,'',j).split(',')for j in lines]))[1]],int(sys.argv[2])):
+        for j in i:
+            print('{',', '.join(j),'}')
+
+if __name__ == '__main__':
+    main()
